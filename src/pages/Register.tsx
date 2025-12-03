@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
+import useAuthStore from "@/stores/auth"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -26,6 +27,8 @@ const registerSchema = z.object({
 type RegisterFormValues = z.infer<typeof registerSchema>
 
 function Register() {
+  const { register, user, token } = useAuthStore();
+
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -35,8 +38,14 @@ function Register() {
     },
   })
 
-  const handleSubmit = () => {
-    // TODO: Implémenter la logique d'inscription
+  console.log(user, token);
+
+  const handleSubmit = async (values: RegisterFormValues) => {
+    await register(values.email, values.password);
+  }
+
+  if (user && token) {
+    return <Navigate to="/dashboard" />
   }
 
   return (

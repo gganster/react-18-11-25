@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import useAuthStore from "@/stores/auth"
 
 const loginSchema = z.object({
   email: z.string().email("Email invalide"),
@@ -22,6 +23,8 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>
 
 function Login() {
+  const { login, user, token } = useAuthStore();
+  
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -30,8 +33,12 @@ function Login() {
     },
   })
 
-  const handleSubmit = () => {
-    // TODO: Implémenter la logique de connexion
+  const handleSubmit = async (values: LoginFormValues) => {
+    await login(values.email, values.password);
+  }
+
+  if (user && token) {
+    return <Navigate to="/dashboard" />
   }
 
   return (

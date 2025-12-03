@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import useAuthStore from "./stores/auth";
+import SuspenseFallback from "./components/SuspenseFallback";
+import useAutoLogin from "./hooks/useAutoLogin";
 
 import DashboardLayout from "./layouts/Dashboard";
 
@@ -9,19 +12,28 @@ import Register from "./pages/Register";
 import DashboardHome from "./pages/Dashboard/DashboardHome";
 
 function App() {
+  const { user, loading } = useAuthStore();
+  useAutoLogin();
+
+  if (loading) return <SuspenseFallback />;
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<DashboardHome />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        
+        {user ?
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<DashboardHome />} />
+          </Route>
+        : <Route path="/dashboard" element={<Navigate to="/login" />} />}
+
+        <Route path="*" element={<span>404</span>} />
       </Routes>
     </BrowserRouter>
   )
 }
 
-export default App
+export default App;

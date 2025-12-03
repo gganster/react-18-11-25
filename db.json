@@ -1,9 +1,14 @@
 {
   "users": [
     {
-      "email": "g@g.com",
-      "password": "$2a$10$VAlTVJfx5HB798OG1k77o.17vb3.oUi.VwN7EErYOTARropKnZDXq",
+      "email": "guilian@gmail.com",
+      "password": "$2a$10$vzxZbr3WcYJYSqNLcjOlnu9o1/hUsZxwqXU8L1OkxHODZD/xz53V6",
       "id": 1
+    },
+    {
+      "email": "g@gmail.com",
+      "password": "$2a$10$aFspByuPTjrEbYpEnfuoQu7BjShWYGISFeWb7xCUGMaQMk1540f9.",
+      "id": 2
     }
   ],
   "tasks": [

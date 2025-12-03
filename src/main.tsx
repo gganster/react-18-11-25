@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary fallbackRender={() => <div>App Error</div>}>
         <Suspense fallback={<div>App Loading...</div>}>
-            <App />
+          <App />
         </Suspense>
       </ErrorBoundary>
     </QueryClientProvider>
