@@ -2,6 +2,11 @@ import { Outlet, Link, useLocation } from "react-router-dom"
 import { LayoutDashboard, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { Suspense } from "react"
+import { ErrorBoundary } from "react-error-boundary"
+
+import ErrorBoundaryFallback from "@/components/ErrorBoundaryFallback"
+import SuspenseFallback from "@/components/SuspenseFallback"
 
 const DashboardLayout = () => {
   const location = useLocation()
@@ -51,7 +56,11 @@ const DashboardLayout = () => {
 
         {/* Page content */}
         <main className="flex-1 p-6">
-          <Outlet />
+          <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+            <Suspense fallback={<SuspenseFallback />}>
+              <Outlet />
+            </Suspense>
+          </ErrorBoundary>
         </main>
       </div>
     </div>
