@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "json-server": "json-server-auth db.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -30,6 +31,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "express": "^5.2.1",
+    "json-server-auth": "^1.2.1",
     "localforage": "^1.10.0",
     "lucide-react": "^0.554.0",
     "match-sorter": "^8.1.0",
@@ -44,7 +47,8 @@
     "sort-by": "^1.2.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
-    "zod": "^4.1.13"
+    "zod": "^4.1.13",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "email": "g@g.com",
+      "password": "$2a$10$VAlTVJfx5HB798OG1k77o.17vb3.oUi.VwN7EErYOTARropKnZDXq",
+      "id": 1
+    }
+  ],
   "tasks": [
     {
       "userId": 1,

@@ -4,3 +4,9 @@ export type Task = {
   title: string;
   completed: boolean;
 }
+
+export type User = {
+  id: number;
+  email: string;
+  password: string;
+}
