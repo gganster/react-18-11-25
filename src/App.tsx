@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import useAuthStore from "./stores/auth";
@@ -6,10 +7,13 @@ import useAutoLogin from "./hooks/useAutoLogin";
 
 import DashboardLayout from "./layouts/Dashboard";
 
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+//import Login from "./pages/Login";
+//import Register from "./pages/Register";
+//import DashboardHome from "./pages/Dashboard/DashboardHome";
 
-import DashboardHome from "./pages/Dashboard/DashboardHome";
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+const DashboardHome = lazy(() => import("./pages/Dashboard/DashboardHome"));
 
 function App() {
   const { user, loading } = useAuthStore();

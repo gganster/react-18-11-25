@@ -7,6 +7,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {Suspense} from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import apiClient from './apiClient.ts';
+import * as serviceWorker from "./serviceWorker.js";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,3 +31,5 @@ createRoot(document.getElementById('root')!).render(
     </QueryClientProvider>
   </StrictMode>,
 )
+
+serviceWorker.register();
