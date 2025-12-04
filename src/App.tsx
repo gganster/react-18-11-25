@@ -1,4 +1,5 @@
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import useAuthStore from "./stores/auth";
