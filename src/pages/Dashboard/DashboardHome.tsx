@@ -1,15 +1,19 @@
-import { ErrorBoundaryTester } from "@/components/ErrorBoundaryTester"
-import { SuspenseBoundaryTester } from "@/components/SuspenseBoundaryTester"
-import { Button } from "@/components/ui/button"
 import useAuthStore from "@/stores/auth"
+import { useSuspenseQuery } from "@tanstack/react-query"
+import type { Task } from "@/type";
 
 function DashboardHome() {
-  const { logout } = useAuthStore();
+  const {user} = useAuthStore();
+  const {data} = useSuspenseQuery<Task[]>({queryKey: [`/tasks/${user?.id}`]});
+
   return (
     <>
-    <ErrorBoundaryTester />
-    <SuspenseBoundaryTester />
-    <Button onClick={() => logout()}>Logout</Button>
+      <h1>Tasks</h1>
+      <ul>
+        {data.map((task) => (
+          <li key={task.id}>{task.title}</li>
+        ))}
+     </ul>
     </>
   )
 }

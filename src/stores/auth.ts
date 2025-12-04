@@ -47,6 +47,8 @@ const useAuthStore = create<AuthStore>((set) => ({
       return user;
     } catch (e) {
       console.error(e);
+      localStorage.removeItem('token');
+      set({ loading: false, user: null, token: null });
       return null;
     }
   },
